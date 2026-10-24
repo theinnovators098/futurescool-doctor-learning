@@ -51,9 +51,14 @@ $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/depth.css">
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+    <script type="module" src="assets/js/scene.js"></script>
+    <script src="assets/js/depth.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
 <header class="site-header">
     <div class="nav-wrap">
         <a class="brand" href="#top" aria-label="Futurescool home"><span class="brand-mark">f<span>.</span></span><span>futurescool</span></a>
@@ -70,9 +75,10 @@ $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES 
 
 <main id="main">
     <section class="hero section-wrap" id="top">
+        <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
         <div class="hero-copy">
             <div class="eyebrow"><span class="eyebrow-dot"></span> FUTURESCOOL FOR DOCTORS</div>
-            <h1>Keep learning.<br><em>Keep moving</em><br>medicine forward.</h1>
+            <h1><span class="line">Keep learning.</span><span class="line"><em>Keep moving</em></span><span class="line">medicine forward.</span></h1>
             <p class="hero-lede">Thoughtful, practical courses for doctors who want to grow their skills and bring new ideas into everyday care.</p>
             <div class="hero-actions">
                 <a class="button button-dark" href="#courses">Find your course <span aria-hidden="true">↗</span></a>
@@ -81,6 +87,7 @@ $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES 
             <div class="hero-note"><span class="mini-avatars"><i>MD</i><i>DR</i><i>+</i></span><span>Designed for curious clinicians<br><b>Wherever you are in your career</b></span></div>
         </div>
         <div class="hero-art" aria-label="Illustration of a doctor's learning journey">
+            <div class="hero-stage">
             <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
             <div class="hero-stamp"><span>LEARN<br>WITH<br>PURPOSE</span><b>✳</b></div>
             <div class="learning-card">
@@ -94,6 +101,7 @@ $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES 
             </div>
             <div class="floating-note note-top"><span class="spark">✳</span><span>Learn for<br><b>real practice</b></span></div>
             <div class="floating-note note-bottom"><span class="note-icon">↗</span><span>Small steps.<br><b>Meaningful growth.</b></span></div>
+            </div>
         </div>
         <div class="hero-bottomline"><span>CONTINUING PROFESSIONAL LEARNING</span><span>MADE FOR THE WAY DOCTORS LEARN <b>✳</b></span></div>
     </section>
@@ -131,6 +139,7 @@ $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES 
     </section>
 
     <section class="approach" id="approach">
+        <canvas class="wave-canvas" id="wave-canvas" aria-hidden="true"></canvas>
         <div class="section-wrap approach-grid">
             <div class="approach-intro"><p class="section-kicker">LEARNING THAT FITS REAL LIFE</p><h2>Make room for<br><em>what’s next.</em></h2><p>Professional growth shouldn’t feel like another shift. We make it easier to find focused learning, fit it around your life and carry it into your work.</p><a class="button button-light" href="#courses">See the courses <span aria-hidden="true">↗</span></a></div>
             <div class="approach-list">
@@ -143,7 +152,7 @@ $safe = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES 
     </section>
 
     <section class="faculty section-wrap" id="faculty">
-        <div class="faculty-card"><div class="faculty-art"><div class="faculty-monogram">F<span>✳</span></div><div class="faculty-caption">GOOD LEARNING<br>STARTS WITH<br>GOOD QUESTIONS.</div><span class="faculty-orbit"></span></div><div class="faculty-copy"><p class="section-kicker">PEOPLE WHO MAKE LEARNING MATTER</p><h2>Learn with people<br>who <em>know the work.</em></h2><p>Meet the educators and practitioners behind each course. Their experience, teaching approach and areas of focus should be easy to explore before you enroll.</p><div class="faculty-placeholder"><span>Faculty profiles are being prepared</span><span>→</span></div></div></div>
+        <div class="faculty-card"><div class="faculty-art"><div class="cube-scene" aria-hidden="true"><div class="cube"><span class="face face-front">F<i>✳</i></span><span class="face face-back">✳</span><span class="face face-right">+</span><span class="face face-left">↗</span><span class="face face-top">f<span>.</span></span><span class="face face-bottom">✳</span></div></div><div class="faculty-caption">GOOD LEARNING<br>STARTS WITH<br>GOOD QUESTIONS.</div><span class="faculty-orbit"></span></div><div class="faculty-copy"><p class="section-kicker">PEOPLE WHO MAKE LEARNING MATTER</p><h2>Learn with people<br>who <em>know the work.</em></h2><p>Meet the educators and practitioners behind each course. Their experience, teaching approach and areas of focus should be easy to explore before you enroll.</p><div class="faculty-placeholder"><span>Faculty profiles are being prepared</span><span>→</span></div></div></div>
     </section>
 
     <section class="enroll-band">
